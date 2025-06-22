@@ -21,6 +21,10 @@ shared_scripts {
 
 client_scripts {
 	"stream/hud_reticle.gfx",
-    "stream/minimap.gfx",
+    	"stream/minimap.gfx",
 	'client.lua'
+}
+
+dependencies {
+	'esx_status',
 }
