@@ -96,30 +96,3 @@ RegisterNetEvent('cs:introCinematic:start', function()
 
     DoScreenFadeIn(1000)
 end)
-
-
-
-
-RegisterCommand('test_scene', function()
-    TriggerEvent('cs:introCinematic:start')
-end)
-
-local currentVehicle = nil
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(500)
-        local playerPed = PlayerPedId()
-        if IsPedInAnyVehicle(playerPed, false) then
-            local veh = GetVehiclePedIsIn(playerPed, false)
-            if veh ~= currentVehicle then
-                currentVehicle = veh
-                local model = GetEntityModel(veh)
-                local spawnName = GetDisplayNameFromVehicleModel(model)
-                print("Nom de spawn du véhicule : " .. spawnName:lower())
-            end
-        else
-            currentVehicle = nil
-        end
-    end
-end)
