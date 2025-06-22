@@ -54,7 +54,7 @@ lib.callback.register("vecRent:server:rentVehicle", function(source, vehicleData
             paymentType
         )
 
-        SendLogs(1752220, "Location de véhicules", logMessage, Logs.Location.webhookURL)
+        exports['basic']:SendLogs(1752220, "Location de véhicules", logMessage, Logs.Location.webhookURL)
 
         local created = lib.callback.await("vecRent:client:createVehicle", source, vehicleData)
         if created then
