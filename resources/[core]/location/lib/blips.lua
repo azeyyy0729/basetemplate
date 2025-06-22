@@ -1,0 +1,16 @@
+Citizen.CreateThread(function()
+    TriggerEvent('onResourceStart')
+    Citizen.Wait(1000)
+    for _, v in pairs(Config.Blips) do
+        local blipMap = AddBlipForCoord(v.pos)
+        SetBlipSprite(blipMap, v.id)
+        SetBlipDisplay(blipMap, 4)
+        SetBlipScale(blipMap, v.scale)
+        SetBlipColour(blipMap, v.color)
+        SetBlipAsShortRange(blipMap, true)
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentSubstringPlayerName(v.name)
+        EndTextCommandSetBlipName(blipMap)
+        SetBlipPriority(blipMap, 5)
+    end
+end)
