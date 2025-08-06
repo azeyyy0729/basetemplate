@@ -55,12 +55,12 @@ function _spawnPed(model, coords, heading)
 end
 
 lib.callback.register('basic:ShowNotify', function(message, title, icon)
-    _showAdvancedNotify(message, title, icon)
+    _notify(message, title, icon)
     return true
 end)
 
 lib.callback.register('basic:showAdvancedNotify', function(message, title, icon)
-    _notify(message, title, icon)
+    _showAdvancedNotify(message, title, icon)
     return true
 end)
 
@@ -69,4 +69,5 @@ exports("_showAdvancedNotify", _showAdvancedNotify)
 exports('_drawMarker', _drawMarker)
 exports("_showHelpNotification", _showHelpNotification)
 exports("_spawnPed", _spawnPed)
+
 
