@@ -12,7 +12,7 @@ shared_scripts {
 }
 
 server_scripts {
-	"@oxmysql/lib/MySQL.lua",
+    "@oxmysql/lib/MySQL.lua",
     "addon/**/server/*.lua",
 }
 
