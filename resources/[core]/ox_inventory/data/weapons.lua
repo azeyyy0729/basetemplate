@@ -1,5 +1,10 @@
 return {
 	Weapons = {
+		['WEAPON_ACIDPACKAGE'] = {
+		    label = 'Newspaper',
+		    weight = 0,
+		    throwable = true,
+		},
 		['WEAPON_BATTLERIFLE'] = {
 			label = 'Battle Rifle',
 			weight = 3300,
