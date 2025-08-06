@@ -20,11 +20,6 @@ lib.callback.register("AddBmxToPly", function(source)
 
     if count < 5 then
         local success, response = exports.ox_inventory:AddItem(source, itemName, 1)
-        if success then
-            lib.callback.await('basic:ShowNotify', source, "BMX récupéré avec succès.")
-        else
-            lib.callback.await('basic:ShowNotify', source, "Erreur lors de l'ajout du BMX : " .. tostring(response))
-        end
     else
         lib.callback.await('basic:ShowNotify', source, "Tu ne peux pas porter plus de BMX.")
     end
