@@ -19,3 +19,7 @@ server_scripts {
 client_scripts {
     "addon/**/client/*.lua",
 }
+
+dependencies {
+    'zUI-v2',
+}
