@@ -1,16 +1,19 @@
-local LocationMenu = zUI.CreateMenu("", "", "Location de véhicules", "https://i.ibb.co/fnhTn69/header-location.jpg")
+local zUI = exports["zUI-v2"]:getObject()
+
+local LocationMenu = zUI.CreateMenu("", "", "Location de véhicules", "default", "https://i.ibb.co/fnhTn69/header-location.jpg")
 
 local SelectedLocation = "Location 1"
 local SelectedVehicle = nil
 local RentalPrice = 0
 
-LocationMenu:SetItems(function(Items)
-    Items:AddSeparator("Sélectionnez un véhicule")
+zUI.SetItems(LocationMenu, function()
+    zUI.Separator("Sélectionnez un véhicule")
 
     for _, vehicle in ipairs(Config.Location[SelectedLocation].vehicles) do
-        Items:AddButton(vehicle.label, "Louer un véhicule: " .. vehicle.label, { RightLabel = "$" .. vehicle.price },
+        zUI.Button(vehicle.label, "Louer un véhicule: " .. vehicle.label, { RightLabel = "$" .. vehicle.price },
             function(onSelected)
                 if onSelected then
+                    zUI.ManageFocus(false)
                     SelectedVehicle = vehicle.name
                     RentalPrice = vehicle.price
 
@@ -25,6 +28,7 @@ LocationMenu:SetItems(function(Items)
                     })
 
                     if input and input[1] then
+                        zUI.ManageFocus(true)
                         local paymentType = input[2]
                         local success, message = lib.callback.await("vecRent:server:rentVehicle", false, {
                             vehicle = SelectedVehicle,
@@ -35,7 +39,7 @@ LocationMenu:SetItems(function(Items)
 
                         exports["basic"]:_notify(message)
                         if success then
-                            LocationMenu:SetVisible(false)
+                            zUI.SetVisible(LocationMenu, false)
                         end
                     end
                 end
@@ -67,7 +71,7 @@ for locationName, locationData in pairs(Config.Location) do
 
                     if IsControlJustPressed(0, 38) then
                         SelectedLocation = locationName
-                        LocationMenu:SetVisible(true)
+                        zUI.SetVisible(LocationMenu, true)
                     end
                 end
 
@@ -79,11 +83,11 @@ for locationName, locationData in pairs(Config.Location) do
     end)
 end
 
-LocationMenu:OnOpen(function()
+zUI.SetOpenHandler(LocationMenu, function()
     FreezeEntityPosition(PlayerPedId(), true)
 end)
 
-LocationMenu:OnClose(function()
+zUI.SetCloseHandler(LocationMenu, function()
     FreezeEntityPosition(PlayerPedId(), false)
 end)
 
