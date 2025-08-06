@@ -155,7 +155,7 @@ end
 ---@param title? string The title of the notification
 ---@return nil
 function ESX.ShowNotification(message, notifyType, length, title)
-	return IsResourceFound('esx_notify') and exports['esx_notify']:Notify(notifyType, length, message, title)
+    return exports["basic"]:_notify(message)
 end
 
 function ESX.TextUI(...)
