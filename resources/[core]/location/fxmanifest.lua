@@ -20,3 +20,7 @@ client_scripts {
     "lib/blips.lua",
     "addon/**/client/*.lua",
 }
+
+dependencies {
+    'zUI-v2',
+}
