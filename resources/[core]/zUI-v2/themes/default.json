@@ -2,42 +2,42 @@
   "menu": {
     "displayBanner": true,
     "displayInformations": true,
-    "displayControlsIndicator": true,
-    "cornersRadius": 0.5,
-    "perspective": true,
+    "displayControlsIndicator": false,
+    "cornersRadius": 0.4,
+    "perspective": false,
     "margin": false,
-    "shadow": true,
-    "hoverStyle": "liquid",
+    "shadow": false,
+    "hoverStyle": "rod",
     "animations": {
-      "entry": "zoomIn",
-      "exit": "slideOutVertical",
-      "onSwitch": true,
-      "onScroll": true
+      "entry": "slideInHorizontal",
+      "exit": "fadeOut",
+      "onSwitch": false,
+      "onScroll": false
     },
     "colors": {
-      "primary": "#FF3837",
+      "primary": "rgba(173,216,255,0.6)",
       "background": "rgba(18, 18, 18, 0.5)",
-      "description": "#121212",
-      "informations": "#121212",
-      "controlsIndicator": "#121212",
-      "itemSelected": "#FF3837",
-      "banner": "#FF3837"
+      "description": "rgba(18, 18, 18, 0.5)",
+      "informations": "rgba(18, 18, 18, 0.5)",
+      "controlsIndicator": "rgba(18, 18, 18, 0.5)",
+      "itemSelected": "rgba(173,216,255,0.6)",
+      "banner": "rgba(173,216,255,0.6)"
     },
-    "font": "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap",
-    "maxVisibleItems": 10
+    "font": "https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap",
+    "maxVisibleItems": 8
   },
   "info": {
-    "cornerRadius": 0.5,
-    "perspective": true,
-    "shadow": true,
+    "cornerRadius": 0.4,
+    "perspective": false,
+    "shadow": false,
     "animations": {
-      "entry": "zoomIn",
-      "exit": "slideOutVertical"
+      "entry": "slideInHorizontal",
+      "exit": "fadeOut"
     },
     "colors": {
-      "primary": "#FF3837",
+      "primary": "rgba(173,216,255,0.6)",
       "background": "rgba(18, 18, 18, 0.5)"
     },
-    "font": "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    "font": "https://fonts.googleapis.com/css2?family=Lexend:wght@200&display=swap"
   }
 }
