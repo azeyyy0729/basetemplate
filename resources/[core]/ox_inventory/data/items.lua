@@ -425,4 +425,10 @@ return {
 		stack = true,
 		close = true,
 	},
+	["bmx"] = {
+		label = "BMX",
+		weight = 2000,
+		stack = false,
+		close = true,
+	},
 }
