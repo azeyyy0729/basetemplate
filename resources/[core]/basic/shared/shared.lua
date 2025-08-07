@@ -1,3 +1,3 @@
 Config = {}
 
-Config.SpawnPedLoc = vector3(-1037.7683, -2737.6316, 20.1693) 
+Config.SpawnPedLoc = vector3(-1037.7751, -2738.1711, 20.1693) 
