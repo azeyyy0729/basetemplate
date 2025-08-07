@@ -1,10 +1,3 @@
-CodeStudio = {}
-
-
-CodeStudio.SpawnPedLoc = vector3(-1049.3997, -2757.4539, 21.3617)    --If not using AI Taxi then set player spawn location 
-
-
-
 local Active = false
 
 local sub_b0b5 = { 
@@ -96,3 +89,4 @@ RegisterNetEvent('cs:introCinematic:start', function()
 
     DoScreenFadeIn(1000)
 end)
+
