@@ -7,17 +7,17 @@ local blipStore = {}
 local netid
 
 if Config.EnableBlip then
-    local NEWS_BLIP = AddBlipForCoord(Config.PedCoords.xyz)
-    SetBlipSprite(NEWS_BLIP, 590)
-    SetBlipDisplay(NEWS_BLIP, 4)
-    SetBlipScale(NEWS_BLIP, 0.60)
-    SetBlipAsShortRange(NEWS_BLIP, true)
-    SetBlipColour(NEWS_BLIP, 1)
-    BeginTextCommandSetBlipName("STRING")
-    AddTextComponentSubstringPlayerName('Livraison de journaux')
-    EndTextCommandSetBlipName(NEWS_BLIP)
-end
+    local blip = AddBlipForCoord(Config.PedCoords.x, Config.PedCoords.y, Config.PedCoords.z)
+    SetBlipSprite(blip, 590) -- Icône type journal
+    SetBlipDisplay(blip, 4)
+    SetBlipScale(blip, 0.6)
+    SetBlipAsShortRange(blip, true)
+    SetBlipColour(blip, 1)
 
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString("Intérim | Livraison de Journaux")
+    EndTextCommandSetBlipName(blip)
+end
 
 local function resetJob()
     if next(workZones) then
@@ -50,7 +50,7 @@ local function validateDrop(point)
             end
         end
         if num > 0 then
-            exports["basic"]:_notify(('Journal livré. %s restant(s)'):format(num))
+            DoNotification(('Newspaper delivered. %s remaining'):format(num))
         end
     end
     Wait(1000) 
@@ -90,12 +90,12 @@ local function createPaperRoute(netid)
         SetBlipScale(blipStore[k], 0.65)
         SetBlipAsShortRange(blipStore[k], true)
         SetBlipColour(blipStore[k], 61)
-        BeginTextCommandSetBlipName("STRING ")
-    AddTextComponentSubstringPlayerName('Livraison')
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentSubstringPlayerName('Delivery')
         EndTextCommandSetBlipName(blipStore[k])
     end
     clockedIn = true
-    exports["basic"]:_notify('Les points de livraison ont été assignés.', 'success')
+    DoNotification('Your delivery locations have been assigned.', 'success')
 end
 
 local function spawnPed()
@@ -118,13 +118,6 @@ local function spawnPed()
     RemoveAnimDict('timetable@ron@ig_3_couch')
 end
 
-local function yeetPed()
-    if DoesEntityExist(startPed) then
-        DeleteEntity(startPed)
-        startPed = nil
-    end
-end
-
 function createStartPoint()
     pedInteract = lib.points.new({
         coords = Config.PedCoords.xyz,
@@ -134,43 +127,35 @@ function createStartPoint()
     })
 end
 
-function OnPlayerLogout()
-    resetJob() yeetPed()
-    if pedInteract then pedInteract:remove() end
-end
 
 AddEventHandler('onResourceStart', function(resource)
     if GetCurrentResourceName() ~= resource or not hasPlyLoaded() then return end
     createStartPoint()
 end)
 
-AddEventHandler('onResourceStop', function(resourceName) 
-    if GetCurrentResourceName() == resourceName then
-        OnPlayerLogout()
-    end 
-end)
 
 
 if GetResourceState('es_extended') == 'started' then
     RegisterNetEvent('esx:removeInventoryItem', function(item, count)
         if item == 'WEAPON_ACIDPACKAGE' and clockedIn and count == 0 then
-            exports["basic"]:_notify('Vous n\'avez plus de journaux.')
+            DoNotification('You are all out of newspapers.')
             resetJob()
         end
     end)
 else
     AddEventHandler('ox_inventory:itemCount', function(item, count)
         if item == 'WEAPON_ACIDPACKAGE' and clockedIn and count == 0 then
-            exports["basic"]:_notify('Vous n\'avez plus de journaux.')
+            DoNotification('You are all out of newspapers.')
             resetJob()
         end
     end)
 end
 
 
+
 local zUI = exports["zUI-v2"]:getObject()
 
-local MenuNewspaper = zUI.CreateMenu(nil, nil, "Distribution Journaux", "default","https://i.ibb.co/JwCt6p9z/journal.png")
+local MenuNewspaper = zUI.CreateMenu(nil, nil, "Distribution Journaux", "default", "https://i.ibb.co/JwCt6p9z/journal.png")
 
 zUI.SetItems(MenuNewspaper, function()
     if not clockedIn then
@@ -209,6 +194,7 @@ end)
 zUI.SetCloseHandler(MenuNewspaper, function()
     FreezeEntityPosition(PlayerPedId(), false)
 end)
+
 
 CreateThread(function()
     local coords = Config.Coords
