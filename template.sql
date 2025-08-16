@@ -15,10 +15,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Listage de la structure de la base pour esxlegacy_4c08fb
-CREATE DATABASE IF NOT EXISTS `esxlegacy_4c08fb` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci */;
-USE `esxlegacy_4c08fb`;
-
 -- Listage de la structure de table esxlegacy_4c08fb. addon_account
 CREATE TABLE IF NOT EXISTS `addon_account` (
   `name` varchar(60) NOT NULL,
