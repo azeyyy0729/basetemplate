@@ -85,8 +85,9 @@ RegisterNetEvent('cs:introCinematic:start', function()
     Wait(250)
 
     ClearPedWetness(plyrId)
-    SetEntityCoords(plyrId, CodeStudio.SpawnPedLoc)
+    SetEntityCoords(plyrId, Config.SpawnPedLoc)
 
     DoScreenFadeIn(1000)
 end)
+
 
